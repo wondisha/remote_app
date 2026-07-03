@@ -1,0 +1,77 @@
+{
+  "applications": [
+    {
+      "timestamp": "2026-07-02T16:06:59",
+      "status": "failed",
+      "reason": "No API key was provided. Please pass a valid API key. Learn how to create an API key at https://ai.google.dev/gemini-api/docs/api-key.\nNo API key was provided. Please pass a valid API key. Learn how to create an API key at https://ai.google.dev/gemini-api/docs/api-key.\nNo API key was provided. Please pass a valid API key. Learn how to create an API key at https://ai.google.dev/gemini-api/docs/api-key.",
+      "url": "https://www.linkedin.com/jobs/view/lead-data-platform-engineer-snowflake-at-toyota-north-america-4432696482",
+      "company_name": "Toyota North America",
+      "job_title": "Lead Data Platform Engineer, Snowflake",
+      "verified": false,
+      "verification_source": "no verified marker found",
+      "artifacts": {
+        "artifact_dir": "D:\\projects\\auto_apply\\project\\artifacts\\2026-07-02\\toyota-north-america-lead-data-platform-engineer-snowflake",
+        "job_context_path": "D:\\projects\\auto_apply\\project\\artifacts\\2026-07-02\\toyota-north-america-lead-data-platform-engineer-snowflake\\job_context.json",
+        "gap_analysis_path": "D:\\projects\\auto_apply\\project\\artifacts\\2026-07-02\\toyota-north-america-lead-data-platform-engineer-snowflake\\gap_analysis.md",
+        "follow_up_path": "D:\\projects\\auto_apply\\project\\artifacts\\2026-07-02\\toyota-north-america-lead-data-platform-engineer-snowflake\\follow_up.md",
+        "gap_analysis": {
+          "readiness": "stretch",
+          "matched_keywords": [
+            "snowflake",
+            "and",
+            "linkedin",
+            "dallas"
+          ],
+          "missing_keywords": [
+            "lead",
+            "platform",
+            "posted",
+            "pm.",
+            "overviewwho",
+            "arecollaborative.",
+            "respectful.",
+            "place",
+            "dream",
+            "do.",
+            "these",
+            "are",
+            "just",
+            "few",
+            "words"
+          ],
+          "role_matches": [
+            "snowflake",
+            "data engineer",
+            "data platform"
+          ],
+          "candidate_location": "Garland, Texas"
+        },
+        "tailored_resume_html_path": "D:\\projects\\auto_apply\\project\\artifacts\\2026-07-02\\toyota-north-america-lead-data-platform-engineer-snowflake\\tailored_resume.html",
+        "tailored_resume_pdf_path": null,
+        "interview_prep_path": "D:\\projects\\auto_apply\\project\\artifacts\\2026-07-02\\toyota-north-america-lead-data-platform-engineer-snowflake\\interview_prep.md"
+      }
+    },
+    {
+      "timestamp": "2026-07-03T08:49:17",
+      "status": "skipped",
+      "reason": "Company verification not confirmed.",
+      "url": "https://www.linkedin.com/jobs/view/snowflake-administrator-at-my3tech-4423134787",
+      "company_name": "My3Tech",
+      "job_title": "snowflake administrator",
+      "verified": false,
+      "verification_source": "no verified marker found",
+      "artifacts": {}
+    },
+    {
+      "timestamp": "2026-07-03T08:58:49",
+      "status": "skipped",
+      "reason": "Company verification not confirmed.",
+      "url": "https://www.linkedin.com/jobs/view/snowflake-admin-at-adpmn-inc-4427113121",
+      "company_name": "ADPMN Inc",
+      "job_title": "Snowflake Admin",
+      "verified": false,
+      "verification_source": "no verified marker found",
+      "artifacts": {}
+    }
+  ]
+}
