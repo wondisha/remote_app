@@ -2,6 +2,31 @@
 
 Automates job-application prep and browser submission with local fallback LLM support.
 
+## Quick Start (5 minutes)
+
+1. **Create and activate virtual environment**
+2. **Install dependencies**
+3. **Configure `.env` with your profile + API keys**
+4. **Run preflight**
+5. **Run discover-only first, then apply mode**
+
+```bash
+python -m venv .venv
+source .venv/bin/activate  # Linux/Mac
+# or: .\.venv\Scripts\Activate.ps1  # Windows PowerShell
+
+pip install -r requirements.txt
+cp .env.example .env  # Windows: copy .env.example .env
+```
+
+Then run:
+
+```bash
+python apply_agent.py --preflight --job-url "https://linkedin.com/jobs/view/123/" --resume resume.pdf
+```
+
+---
+
 ## What's New
 
 - **Modular Architecture**: Split into separate modules for config, storage, discovery, documents, and agent
@@ -96,37 +121,45 @@ MSSQL_USERNAME=your_sql_user
 MSSQL_PASSWORD=your_password
 ```
 
-## Typical Commands
+## How to Execute the App
 
-Preflight one posting:
+### 1) Preflight first (recommended every new session)
+
 ```bash
 python apply_agent.py --preflight --job-url "https://linkedin.com/jobs/view/123/" --resume resume.pdf
 ```
 
-Generate documents only:
-```bash
-python apply_agent.py --generate-docs-only --job-url "https://linkedin.com/jobs/view/123/" --resume resume.pdf
-```
+### 2) Safe mode: discover jobs only (no applying)
 
-Apply to one posting:
-```bash
-python apply_agent.py --job-url "https://linkedin.com/jobs/view/123/" --resume resume.pdf
-```
-
-Batch from file:
-```bash
-python apply_agent.py --job-urls-file jobs.txt --resume resume.pdf
-```
-
-Discover and preview:
 ```bash
 python apply_agent.py --discover-only --job-search-query "data engineer" --job-search-location "Texas" --resume resume.pdf
 ```
 
-Discover and apply:
+### 3) Generate documents only (no browser apply)
+
+```bash
+python apply_agent.py --generate-docs-only --job-url "https://linkedin.com/jobs/view/123/" --resume resume.pdf
+```
+
+### 4) Apply to one posting
+
+```bash
+python apply_agent.py --job-url "https://linkedin.com/jobs/view/123/" --resume resume.pdf
+```
+
+### 5) Apply in batch from file
+
+```bash
+python apply_agent.py --job-urls-file jobs.txt --resume resume.pdf
+```
+
+### 6) Discover and apply in one run
+
 ```bash
 python apply_agent.py --job-search-query "data engineer" --job-search-location "Texas" --resume resume.pdf
 ```
+
+### 7) Optional interfaces
 
 Launch dashboard:
 ```bash
@@ -136,6 +169,54 @@ streamlit run streamlit_app.py
 Start backend API:
 ```bash
 uvicorn app_backend.main:app --reload
+```
+
+## Better Search: How to Get Better Job Matches
+
+Use these practices for higher quality results:
+
+1. **Be specific with role intent**
+   - Good: `"senior data engineer python airflow"`
+   - Better than: `"engineer"`
+
+2. **Constrain location deliberately**
+   - Use exact metro/state for local roles.
+   - Use broader regions only when role volume is low.
+
+3. **Use discover-only to tune before applying**
+   - Start with `--discover-only` to inspect discovered links.
+   - Refine query/location until top jobs are relevant.
+
+4. **Tune verification policy**
+   - Keep `REQUIRE_VERIFIED_COMPANY=true` for safer targeting.
+   - Add known companies to `VERIFIED_COMPANY_ALLOWLIST` when needed.
+
+5. **Prefer focused batches**
+   - Curate `jobs.txt` with high-quality links rather than large noisy lists.
+   - Run smaller batches more often for better control.
+
+6. **Iterate query strings**
+   - Include must-have stack terms (e.g., `dbt`, `spark`, `aws`, `sql`).
+   - Include domain terms when relevant (e.g., `healthcare`, `fintech`, `marketplace`).
+
+### Example search progression
+
+Start broad:
+
+```bash
+python apply_agent.py --discover-only --job-search-query "data engineer" --job-search-location "Texas" --resume resume.pdf
+```
+
+Refine for fit:
+
+```bash
+python apply_agent.py --discover-only --job-search-query "senior data engineer python airflow dbt" --job-search-location "Dallas, TX" --resume resume.pdf
+```
+
+Then run apply mode when satisfied:
+
+```bash
+python apply_agent.py --job-search-query "senior data engineer python airflow dbt" --job-search-location "Dallas, TX" --resume resume.pdf
 ```
 
 ## Module Reference
@@ -200,6 +281,14 @@ streamlit run streamlit_app.py
 ### VPS/Docker (Coming Soon)
 
 Deploy to a VPS with Chrome installed for full cloud-based automation.
+
+## Troubleshooting
+
+- **`ModuleNotFoundError`**: Activate your virtual environment and reinstall requirements.
+- **Browser not launching**: Ensure Chrome/Edge is installed and accessible in PATH.
+- **No jobs discovered**: Refine `--job-search-query`, broaden location, or switch between role-specific terms.
+- **Verification rejects many jobs**: Add trusted employers to `VERIFIED_COMPANY_ALLOWLIST`.
+- **Slow generation**: Local models can be slower; adjust `DOCUMENT_*_CHAR_LIMIT` values.
 
 ## Notes
 
